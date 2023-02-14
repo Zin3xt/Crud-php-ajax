@@ -81,23 +81,31 @@
     }
 
     function updateNote(noteId) {
-        $.post("pages/NotesInput/actions/update_note.php", {
-                noteId: noteId,
-                title: $("#title_Fieldedit").val(),
-                description: $("#des_fliededit").val(),
-            },
-            function(data) {
-                if (data == 'success') {
-                    alert('Save successfully.')
-                    $("#exampleModal").modal('hide');
-                    $("#exampleModal .modal-content").html('');
-                    showTable();
-                } else {
-                    alert(data)
-                }
-            },
-        );
+        if (confirm("Are you sure you want to proceed?")) {
+            $.post("pages/NotesInput/actions/update_note.php", {
+                    noteId: noteId,
+                    title: $("#title_Fieldedit").val(),
+                    description: $("#des_fliededit").val(),
+                },
+                function(data) {
+                    if (data == 'success') {
+                        alert('Save successfully.')
+                        $("#exampleModal").modal('hide');
+                        $("#exampleModal .modal-content").html('');
+                        showTable();
+                    } else {
+                        alert(data)
+                    }
+                },
+            );
+        } else {
+            alert('Update unsuccessfully.')
+            $("#exampleModal").modal('hide');
+            showTable();
+
+        }
     }
+
 
     function DeleteData(id) {
         if (confirm("Are you sure you want to proceed?")) {

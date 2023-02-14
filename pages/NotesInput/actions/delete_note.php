@@ -7,8 +7,8 @@ try {
 
 
 
-    $qryInsert = $conn->prepare("DELETE FROM tblnotes WHERE noteid=" . $id);
-    $qryInsert->execute();
+    $qryInsert = $conn->prepare("DELETE FROM tblnotes WHERE noteid= ?");
+    $qryInsert->execute([$id]);
 
 
 
